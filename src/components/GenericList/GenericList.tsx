@@ -19,4 +19,5 @@ export function MyList({list}: IMyListProps) {
       ))}
     </ul>
   );
-}
+}    
+

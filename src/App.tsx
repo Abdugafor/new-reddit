@@ -6,6 +6,7 @@ import { Content } from "./components/Content";
 import { CardsList } from "./components/CardsList";
 import { assignId, generateId, generateRandomString } from "../utils/react/generateRandomIndex";
 import { MyList } from "./components/GenericList";
+import { Dropdown } from "./components/Dropdown";
 
 
 const LIST = [
@@ -20,9 +21,17 @@ function App() {
             <Layout>
                 <Header/>
                 <Content>
-                    <CardsList/> 
-                    <MyList list={LIST.map((item) => ({...item , onClick: () => { console.log(item.id) } }))}/>
+                    <CardsList/>
+                    <div style={{ padding: 20}}>
+                        <Dropdown button={<button>Test</button>}>
+                            <ul>
+                                <li onClick={console.log}>Click me</li>
+                                <li>Dont click me</li>
+                            </ul>
+                        </Dropdown> 
+                    </div>
                 </Content>
+               
             </Layout>
         </div>
     )
