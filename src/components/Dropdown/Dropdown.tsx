@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './dropdown.css';
 
 
 interface IDropdownProps {
   button: React.ReactNode,
   children: React.ReactNode
+  isOpen?: boolean
+  onOpen?: () => void
+  onClose?: () => void
 }
-export function Dropdown({button, children}: IDropdownProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+const NOOP = () => {}
+
+export function Dropdown({button, children, isOpen, onClose = NOOP, onOpen = NOOP}: IDropdownProps) {
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(isOpen)
+  useEffect(() => setIsDropdownOpen(isOpen), [isOpen])
+  useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen])
+
+  const handleClick = () => {
+      if (isOpen === undefined) {
+        setIsDropdownOpen(!isDropdownOpen)
+      }    
+  }
 
   return (
     <div className={styles.listContainer}>
-        <div onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+        <div onClick={handleClick}>
           {  button }
         </div>
 

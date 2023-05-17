@@ -35,11 +35,14 @@ function App() {
                 <Content>
                     <CardsList/>
                     <div style={{ padding: 20}}>
-                        <Dropdown button={<button>Test</button>}>
-                            <ul>
-                                <li onClick={console.log}>Click me</li>
-                                <li>Dont click me</li>
-                            </ul>
+                        <br />
+                        <Dropdown 
+                            onClose={() => console.log('closed')} 
+                            onOpen={() => console.log('opened')} 
+                            isOpen={false}
+                            button={<button>Test</button>}
+                        >
+                          <CardsList/> 
                         </Dropdown> 
                     </div>
                 </Content>
